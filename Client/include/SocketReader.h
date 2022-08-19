@@ -2,10 +2,10 @@
 // Created by sasonshi@wincs.cs.bgu.ac.il on 04/01/2022.
 //
 
-#ifndef SPLCLIENT2_SOCKETREADER_H
-#define SPLCLIENT2_SOCKETREADER_H
+#ifndef Client_SOCKETREADER_H
+#define Client_SOCKETREADER_H
 
-#endif //SPLCLIENT2_SOCKETREADER_H
+#endif //Client_SOCKETREADER_H
 
 #include <mutex>
 #include <condition_variable>

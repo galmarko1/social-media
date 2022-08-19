@@ -2,8 +2,6 @@
 #include <boost/asio/ip/tcp.hpp>
 #include "../include/connectionHandler.h"
 
-//using boost::asio::ip::tcp;
-
 using std::cin;
 using std::cout;
 using std::cerr;
@@ -11,6 +9,7 @@ using std::endl;
 using std::string;
 
 class BidiMessagingProtocol;
+
 ConnectionHandler::ConnectionHandler(string host, short port): host_(host), port_(port), io_service_(), socket_(io_service_){}
     
 ConnectionHandler::~ConnectionHandler() {
@@ -40,7 +39,6 @@ bool ConnectionHandler::getBytes(char bytes[], unsigned int bytesToRead) {
     try {
         while (!error && bytesToRead > tmp ) {
 			tmp += socket_.read_some(boost::asio::buffer(bytes+tmp, bytesToRead-tmp), error);
-//            std::cout<<"getBytes MSG"<<std::endl;
         }
 		if(error)
 			throw boost::system::system_error(error);
@@ -65,7 +63,6 @@ bool ConnectionHandler::sendBytes(std::vector<char> vec, int bytesToWrite) {
         while (!error && bytesToWrite > tmp ) {
 			tmp += socket_.write_some(boost::asio::buffer(frameArray + tmp, bytesToWrite - tmp), error);
         }
-//        std::cout<<"sendBytes MSG"<<std::endl;
         if(error)
 			throw boost::system::system_error(error);
     } catch (std::exception& e) {
@@ -94,7 +91,6 @@ bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
 			if(!getBytes(&ch, 1))
                 return false;
             vector.push_back(ch);
-//            std::cout<<"getFrameAscii MSG"<<std::endl;
         }while (delimiter != ch);
         std::string s = this->getEncDec().decode(vector);
         frame.append(s);
@@ -107,13 +103,10 @@ bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
  
 bool ConnectionHandler::sendFrameAscii(const std::string& frame, char delimiter) {
     std::vector<char> newFrame=this->getEncDec().encode(frame);
-
-//    std::cout<<"sendFrameAscii MSG"<<std::endl;
 	bool result=sendBytes(newFrame,newFrame.size());
 	if(!result) return false;
     std::vector<char> v;
     v.push_back(delimiter);
-//    std::cout<<"sendFrameAscii delimiter"<<std::endl;
     return sendBytes(v,1);
 }
  

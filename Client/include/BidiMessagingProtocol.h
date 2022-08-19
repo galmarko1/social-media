@@ -1,11 +1,11 @@
 //
 // Created by sasonshi@wincs.cs.bgu.ac.il on 03/01/2022.
 //
-#ifndef SPLCLIENT2_BIDIMESSAGINGPROTOCOL_H
-#define SPLCLIENT2_BIDIMESSAGINGPROTOCOL_H
+#ifndef Client_BIDIMESSAGINGPROTOCOL_H
+#define Client_BIDIMESSAGINGPROTOCOL_H
 
 #include <boost/asio/ip/tcp.hpp>
-//#include "connectionHandler.h"
+
 
 using boost::asio::ip::tcp;
 
@@ -17,4 +17,4 @@ public:
     BidiMessagingProtocol();
     void process(std::string& message);
 };
-#endif //SPLCLIENT2_BIDIMESSAGINGPROTOCOL_H
+#endif //Client_BIDIMESSAGINGPROTOCOL_H

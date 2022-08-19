@@ -1,6 +1,3 @@
-//
-// Created by galmarko@wincs.cs.bgu.ac.il on 03/01/2022.
-//
 
 #include "../include/encoderDecoder.h"
 
@@ -44,13 +41,7 @@ std::vector<char> encoderDecoder::encode(std::string str){
             ans.push_back(str.at(i));
         i ++;
     }
-//    if(op==2){
-//        ans.push_back('\0');
-//        ans.push_back(' ');
-//        ans.push_back('1');
-//    }
     ans.push_back('\0');
-//    ans.push_back(';');///////////////////////////////////////////////////////////////////////
     return ans;
 }
 std::string encoderDecoder::decode(std::vector<char> vec) {

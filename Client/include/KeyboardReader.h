@@ -2,8 +2,8 @@
 // Created by sasonshi@wincs.cs.bgu.ac.il on 04/01/2022.
 //
 
-#ifndef SPLCLIENT2_KEYBOARDREADER_H
-#define SPLCLIENT2_KEYBOARDREADER_H
+#ifndef Client_KEYBOARDREADER_H
+#define Client_KEYBOARDREADER_H
 
 
 
@@ -30,5 +30,5 @@ public:
     //KeyboardReader &operator=(const KeyboardReader&)= default;
     void run();
 };
-#endif //SPLCLIENT2_KEYBOARDREADER_H
+#endif //Client_KEYBOARDREADER_H
 #endif //BOOST_ECHO_CLIENT_KEYBOARDREADER_H

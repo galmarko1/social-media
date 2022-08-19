@@ -1,6 +1,3 @@
-//
-// Created by sasonshi@wincs.cs.bgu.ac.il on 03/01/2022.
-//
 
 #include <iostream>
 #include "../include/BidiMessagingProtocol.h"
@@ -12,15 +9,15 @@ BidiMessagingProtocol::BidiMessagingProtocol() {}
 void BidiMessagingProtocol::process(std::string &message) {
     int indexOfSpace = message.find_first_of(" ");
     std::string opCode_1 = message.substr(0, indexOfSpace);
-    std::string restMSG = message.substr(indexOfSpace); //copy after indexOfSpace;
+    std::string restMSG = message.substr(indexOfSpace);
 
     if (opCode_1=="9") { //Notifications
         int indexOfSpace2 = restMSG.find_first_of(" ");
         std::string opCode_2 = restMSG.substr(0, indexOfSpace2);
         restMSG = restMSG.substr(indexOfSpace2);
         std::string kind_MSG = "";
-        if (opCode_2=="0") {
-            kind_MSG =kind_MSG + "PM";
+        if (opCode_2 == "0") {
+            kind_MSG = kind_MSG + "PM";
         } else {
             kind_MSG = kind_MSG + "Public";
         }
@@ -31,7 +28,7 @@ void BidiMessagingProtocol::process(std::string &message) {
         std::string content = restMSG.substr(index_Zero1);
         std::cout << "NOTIFICATION " << kind_MSG <<" "<< postUser <<" "<< content <<" "<< std::endl;
 
-    } else if (opCode_1== "10") { //ACK todo livdok logout ack
+    } else if (opCode_1 == "10") { //ACK
         int indexOfSpace2 = restMSG.find_first_of(" ");
         std::string opCode_2 = restMSG.substr(0, indexOfSpace2);
         std::string optional = restMSG.substr(indexOfSpace2);

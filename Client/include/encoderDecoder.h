@@ -2,8 +2,8 @@
 // Created by galmarko@wincs.cs.bgu.ac.il on 03/01/2022.
 //
 
-#ifndef SPLCLIENT2_ENCODERDECODER_H
-#define SPLCLIENT2_ENCODERDECODER_H
+#ifndef Client_ENCODERDECODER_H
+#define Client_ENCODERDECODER_H
 #include <string>
 #include <iostream>
 #include <boost/asio.hpp>

@@ -6,8 +6,6 @@
 #include <boost/asio.hpp>
 #include "../include/encoderDecoder.h"
 #include "../include/BidiMessagingProtocol.h"
-//#include "/users/studs/bsc/2022/sasonshi/CLionProjects/splClient2/src/BidiMessagingProtocol.cpp"
-//class BidiMessagingProtocol;
 
 using boost::asio::ip::tcp;
 class ConnectionHandler {
