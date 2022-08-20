@@ -5,7 +5,7 @@
 #ifndef Client_SOCKETREADER_H
 #define Client_SOCKETREADER_H
 
-#endif //Client_SOCKETREADER_H
+#endif
 
 #include <mutex>
 #include <condition_variable>
@@ -14,8 +14,6 @@
 class SocketReader {
 private:
     ConnectionHandler *connectionHandler;
-//    std::mutex& mtx;
-//    std::condition_variable& conditionVariable;
     bool shouldTerminate;
 public:
     SocketReader(ConnectionHandler *ch, bool shouldTerminate);
@@ -23,5 +21,4 @@ public:
     SocketReader(const SocketReader&)= default;
     SocketReader &operator=(const SocketReader&)= default;
     void run();
-//    short bytesToShort(char *bytesArr);
 };

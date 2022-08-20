@@ -7,40 +7,41 @@ using boost::asio::ip::tcp;
 BidiMessagingProtocol::BidiMessagingProtocol() {}
 
 void BidiMessagingProtocol::process(std::string &message) {
-    int indexOfSpace = message.find_first_of(" ");
-    std::string opCode_1 = message.substr(0, indexOfSpace);
-    std::string restMSG = message.substr(indexOfSpace);
+    int firstSpace = message.find_first_of(" ");
+    int opCode_1 = std::stoi(message.substr(0, firstSpace));
+    std::string msgRest = message.substr(firstSpace);
 
-    if (opCode_1=="9") { //Notifications
-        int indexOfSpace2 = restMSG.find_first_of(" ");
-        std::string opCode_2 = restMSG.substr(0, indexOfSpace2);
-        restMSG = restMSG.substr(indexOfSpace2);
-        std::string kind_MSG = "";
-        if (opCode_2 == "0") {
-            kind_MSG = kind_MSG + "PM";
-        } else {
-            kind_MSG = kind_MSG + "Public";
+    switch (opCode_1) {
+        case 9: {
+            int secondSpace = msgRest.find_first_of(" ");
+            std::string opCode_2 = msgRest.substr(0, secondSpace);
+            msgRest = msgRest.substr(secondSpace);
+            std::string msg_type = "";
+            if (opCode_2 == "0") {
+                msg_type = msg_type + "PM";
+            } else {
+                msg_type = msg_type + "Public";
+            }
+
+            int zero = msgRest.find_first_of(" ");
+            std::string postUser = msgRest.substr(0, zero);
+            msgRest = msgRest.substr(zero);
+            std::string content = msgRest.substr(zero);
+            std::cout << "NOTIFICATION " << msg_type << " " << postUser << " " << content << " " << std::endl;
         }
 
-        int index_Zero1 = restMSG.find_first_of(" ");
-        std::string postUser = restMSG.substr(0, index_Zero1);
-        restMSG = restMSG.substr(index_Zero1);
-        std::string content = restMSG.substr(index_Zero1);
-        std::cout << "NOTIFICATION " << kind_MSG <<" "<< postUser <<" "<< content <<" "<< std::endl;
-
-    } else if (opCode_1 == "10") { //ACK
-        int indexOfSpace2 = restMSG.find_first_of(" ");
-        std::string opCode_2 = restMSG.substr(0, indexOfSpace2);
-        std::string optional = restMSG.substr(indexOfSpace2);
-        std::cout << "ACK" << opCode_2 << optional << std::endl;
-        if (std::equal(opCode_2.begin(), opCode_2.end(), "3")) { //todo terminate
-
+        case 10: {
+            int secondSpace = msgRest.find_first_of(" ");
+            std::string opCode_2 = msgRest.substr(0, secondSpace);
+            std::string optional = msgRest.substr(secondSpace);
+            std::cout << "ACK" << opCode_2 << optional << std::endl;
+            if (!(std::equal(opCode_2.begin(), opCode_2.end(), "3"))) {
+                std::string opCode_2 = msgRest.substr(0);
+                std::cout << "ERROR" << opCode_2 << std::endl;
+            }
         }
-    } else if (opCode_1=="11") { //Error
-        std::string opCode_2 = restMSG.substr(0);
-        std::cout << "ERROR" << opCode_2 << std::endl;
-
     }
+
 }
 
 

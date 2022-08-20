@@ -19,10 +19,10 @@ import bgu.spl.net.srv.ConnectionHandler;
 
 public class BidiMessagingProtocolImpl<T> implements BidiMessagingProtocol<String> {
 
-    private boolean shouldTerminate=false;
+    private boolean shouldTerminate = false;
     private Connections connections = Connections.getInstance();
     private int connectionId;
-    private LinkedList<String> words=new LinkedList<String>();
+    private LinkedList<String> words = new LinkedList<String>();
     private ConnectionHandler connectionHandler ;
 
     public BidiMessagingProtocolImpl(){
@@ -41,13 +41,12 @@ public class BidiMessagingProtocolImpl<T> implements BidiMessagingProtocol<Strin
     public void start(int connectionId, Connections connections) {
         this.connections = Connections.getInstance();
         this.connectionId = connectionId;
-        //todo
     }
 
     @Override
     public void process(String message) throws IOException {
         String reply = "";
-        int index = message.indexOf(' ');//todo check if LOGSTAT(no " ")
+        int index = message.indexOf(' ');
         String action="";
         if(index==-1){
             action="LOGSTAT";
@@ -67,37 +66,32 @@ public class BidiMessagingProtocolImpl<T> implements BidiMessagingProtocol<Strin
                 pIndex+=2;
                 int bIndex = message.indexOf('\0',pIndex);
                 String birthday = message.substring(pIndex,bIndex);
-//                String day=birthday.substring(0,2);
-//                int dayInt=Integer.parseInt(day);
-//                String month=birthday.substring(3,5);
-//                int monthInt=Integer.parseInt(month);
                 String year=birthday.substring(6);
-                int yearInt=Integer.parseInt(year);
-                ZonedDateTime curr_time=ZonedDateTime.now();
+                int yearInt = Integer.parseInt(year);
+                ZonedDateTime curr_time = ZonedDateTime.now();
                 int curr_years=curr_time.getYear();
-                int age=curr_years-yearInt;
+                int age = curr_years-yearInt;
 
-//                User curr=connections.getConnectionHandler(connectionId).getCurrentUser();
                 if(connections.getRegisteredUsers().containsKey(username)){
                     reply="11 1";
                 }
                 else{
-                    newUser=new User(username,password,birthday,age);
+                    newUser = new User(username,password,birthday,age);
                     connections.getRegisteredUsers().put(username,newUser);
                     newUser.setCh(this.connectionHandler);
                     reply = "10 1";
                 }
-                connections.getConnectionHandler(connectionId).send(reply+";");  //todo hasuv
+                connections.getConnectionHandler(connectionId).send(reply+";");
                 break;
 
 
             case "LOGIN":
                 int loIndex = message.indexOf('\0',index);
                 String LogInUsername = message.substring(index,loIndex);
-                loIndex +=2;
+                loIndex += 2;
                 int passIndex = message.indexOf('\0',loIndex);
-                String password2 =message.substring(loIndex,passIndex);
-                passIndex+=2;
+                String password2 = message.substring(loIndex,passIndex);
+                passIndex += 2;
                 int cpIndex = message.indexOf('\0',passIndex);
                 String capcha=message.substring(passIndex,cpIndex);
                 boolean bCapcha=capcha.equals("1");

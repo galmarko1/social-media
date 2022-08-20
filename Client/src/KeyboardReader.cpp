@@ -1,6 +1,4 @@
-//
-// Created by sasonshi@wincs.cs.bgu.ac.il on 04/01/2022.
-//
+
 
 #include "../include/KeyboardReader.h"
 using namespace std;

@@ -1,6 +1,3 @@
-//
-// Created by galmarko@wincs.cs.bgu.ac.il on 03/01/2022.
-//
 
 #ifndef Client_ENCODERDECODER_H
 #define Client_ENCODERDECODER_H
@@ -14,9 +11,5 @@ public:
     std::string decode(std::vector<char>);
     short bytesToShort(char* bytesArr);
     void shortToBytes(short num, char* bytesArr);
-
-
 };
-
-
-#endif //SPLCLIENT2_ENCODERDECODER_H
+#endif

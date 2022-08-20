@@ -1,6 +1,4 @@
-//
-// Created by sasonshi@wincs.cs.bgu.ac.il on 03/01/2022.
-//
+
 #ifndef Client_BIDIMESSAGINGPROTOCOL_H
 #define Client_BIDIMESSAGINGPROTOCOL_H
 
@@ -17,4 +15,4 @@ public:
     BidiMessagingProtocol();
     void process(std::string& message);
 };
-#endif //Client_BIDIMESSAGINGPROTOCOL_H
+#endif

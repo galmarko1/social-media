@@ -5,8 +5,7 @@
 #include "../include/connectionHandler.h"
 #include "../include/SocketReader.h"
 #include "../include/KeyboardReader.h"
-//#include "../include/KeyboardReader.h"
-//#include "../include/SocketReader.h"
+
 
 using boost::asio::ip::tcp;
 /**
@@ -19,7 +18,6 @@ int main (int argc, char *argv[]) {
         std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
         return -1;
     }
-
 
     std::string host = argv[1];
     short port = atoi(argv[2]);

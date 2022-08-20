@@ -12,15 +12,15 @@ void SocketReader::run()  {
         }
         this->connectionHandler->getProtocol().process(answer);
 
-        int len=answer.length();
+        int len = answer.length();
         std::cout << "Reply: " << answer << " " << len << " bytes " << std::endl << std::endl;
         if (answer == "10 3 ") {
             std::cout << "Exiting...\n" << std::endl;
             this->connectionHandler->close();
-            shouldTerminate=true;
+            shouldTerminate = true;
             break;
         }
-        if(answer=="11 3"){
+        if(answer == "11 3"){
             this->connectionHandler->setErrorLogout(true);
         }
     }
