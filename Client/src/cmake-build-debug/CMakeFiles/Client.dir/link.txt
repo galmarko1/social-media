@@ -1,0 +1,1 @@
+/usr/bin/c++  -lboost_system -lboost_thread -pthread -g CMakeFiles/Client.dir/connectionHandler.cpp.o CMakeFiles/Client.dir/echoClient.cpp.o CMakeFiles/Client.dir/BidiMessagingProtocol.cpp.o CMakeFiles/Client.dir/KeyboardReader.cpp.o CMakeFiles/Client.dir/SocketReader.cpp.o CMakeFiles/Client.dir/encoderDecoder.cpp.o -o Client  /usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0 
